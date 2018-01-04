@@ -8,7 +8,7 @@ coordSup<-76840007
 # Dir and files
 directory<-"/Users/Hintermann/Desktop/4C_wp_tb_brain"
 In_file<-"tbw_norm_smoothed"
-Out_file<-"tbw_HoxD_2"
+Out_file<-"tbw_norm_smoothed_HoxD"
 
 ### Functions
 
