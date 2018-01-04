@@ -22,7 +22,6 @@ setwd(directory)
 
 fn<-list.files(In_file,full.names=F)
 fn
-
 TEST_normSmoothed_DF<-SelectInterval(read.table(paste(getwd(),In_file,fn[4],sep="/"), sep="\t", fill = TRUE,skip=1,header=F, quote="\"", stringsAsFactors=F))
 head(TEST_normSmoothed_DF)
 
