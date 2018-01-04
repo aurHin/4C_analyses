@@ -1,0 +1,37 @@
+### Variables
+
+#Selection of the ROI (here, around HoxD)
+chrom<-"chr2"
+coordInf<-72239991
+coordSup<-76840007
+
+# Dir and files
+directory<-"/Users/Hintermann/Desktop/4C_wp_tb_brain"
+In_file<-"tbw_norm_smoothed"
+Out_file<-"tbw_HoxD_2"
+
+### Functions
+
+SelectInterval<-function(dataset){
+  return(subset(dataset,dataset[,1]==chrom&dataset[,2]>=coordInf&dataset[,3]<=coordSup))
+}
+
+### Script
+
+setwd(directory)
+
+fn<-list.files(In_file,full.names=F)
+fn
+
+TEST_normSmoothed_DF<-SelectInterval(read.table(paste(getwd(),In_file,fn[4],sep="/"), sep="\t", fill = TRUE,skip=1,header=F, quote="\"", stringsAsFactors=F))
+head(TEST_normSmoothed_DF)
+
+for (file in fn){
+  normSmoothed_DF<-SelectInterval(read.table(paste(getwd(),In_file,file,sep="/"), sep="\t", fill = TRUE,skip=1,header=F, quote="\"", stringsAsFactors=F))
+  normSmoothed_DF_woNAs<-na.omit(normSmoothed_DF)
+  NS_header<-as.character(read.table(paste(getwd(),In_file,file,sep="/"), sep="\t", fill = TRUE,nrows=1,header=F, quote="\"", stringsAsFactors=F))
+  NS_fname<-paste(getwd(),Out_file,paste(unlist(strsplit(file,"[.]"))[1],"_HoxD.bedGraph",sep=""),sep="/")
+  cat(NS_header,file = NS_fname)
+  write.table(normSmoothed_DF,NS_fname,col.names = F, row.names = F,quote = F,append = T, sep="\t")
+}
+
