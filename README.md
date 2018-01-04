@@ -1,3 +1,9 @@
+# OrgBG
+Start from a directory with an Input file containing bedGraphs and an empty output file.
+The script applies to all bedGraphs of input file.
+Selects intervals within ROI and removes NAs.
+Save new bedGraphs in the output file.
+
 # Average-4C
 How to average 4C data from two biological replicates?
 
