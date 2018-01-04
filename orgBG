@@ -5,8 +5,13 @@ chrom<-"chr2"
 coordInf<-72239991
 coordSup<-76840007
 
-# Dir and files
+### Dir and files
 directory<-"/Users/Hintermann/Desktop/4C_wp_tb_brain"
+
+# To select files in the current folder according to their name conatining a pattern, type following command in terminal:
+# cp pattern destinationFolder
+# Example:
+# cp normalised_*Hox*[t,b,w,T,B,W]* /Users/Hintermann/Desktop/4C_GAL/tbw_normalised
 In_file<-"tbw_norm_smoothed"
 Out_file<-"tbw_norm_smoothed_HoxD"
 
