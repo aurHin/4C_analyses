@@ -9,6 +9,16 @@ Here, no work on fastq files but on the files pre-processed by HTSstation.
 Connect http://htsstation.epfl.ch/
 list of analyses > ProjectName > download all files
 
+# ANALYSING THE DATA
+
+Select files
+
+Select_ROI.R
+Avg_BioRep.R
+Smoothing.R
+
+4C_Functions.R
+
 ### Select files of interest
 Work in directory NameOfProject.
 Save all files in NameOfProject/allFiles folder.
@@ -40,6 +50,12 @@ Save one output file in NameOfProject/normalised_mBR
 normalised_scorePerFeature_viewpoint_tissue_repXXX_HoxD_mBR.bedGraph
 
 # Smoothing.R
+Choose size of Sliding window.
+Smooth all files in NameOfProject/normalised_HoxD.
+Removes NAs for visualisation in IGV - of smoothed and unsmoothed (=input) files.
+Save smoothed and unsmoothed files in NameOfProject/norm_smoothed_woNA. NOTE: names are simplified for ease of visualization.
+Respectively Viewpoint_Tissue_SmoothSizeSlidingWindow.bedGraph Viewpoint_Tissue_noSmooth.bedGraph
+NOTE: output files ready to use in IGV
 
 # January 2018 - WP, tailbud, brain 4C
 Application of these tools on 4C fot the WP project
@@ -48,9 +64,20 @@ Download from lims: fastq for GAL1 and GAL2
 Download form HTS GAL1 and GAL2 (run by Leo), replicates not specified
 
 Files of interest selected in 4C_GAL_process/allFIles with normalised_sc*Hox*rep* command and saved in 4C_GAL_process/normalised
+normalised_scorePerFeature_Hoxd1_brain1_rep51415.bedGraph
+
 Intervals covering HoxD region selected in 4C_GAL_process/normalised by Select_ROI.R output saved to 4C_GAL_process/normalised_HoxD
 HoxD region chrom<-"chr2"coordInf<-72239991 coordSup<-76840007
-Merge biological replicates of 4C_GAL_process/normalised_HoxD with
+normalised_scorePerFeature_Hoxd1_brain1_rep51415_HoxD.bedGraph
 
+Merge biological replicates of 4C_GAL_process/normalised_HoxD with Avg_BioRep.R output saved to 4C_GAL_process/normalised_mBR
+One replicate copied by hand in normalised_mBR: Hoxd1 to Hoxd9 for wp2 and Hoxd1 to Hoxd4 for tb1
+Two replicates merged with Avg_BioRep.R and saved in normalised_mBR: Hoxd1 to Hoxd9 brain1 brain2 and brain1 Brain2 and Hoxd8 to Hoxd13 tb1 tb2
 normalised_scorePerFeature_Hoxd1_brain1_rep51415_HoxD_mBR.bedGraph
+
+For all files in 4C_GAL_process/normalised_mBR apply Smoothing.R with size of sliding window =3 and =11.
+In 4C_GAL_process/norm_smoothed_woNA, for each file in 4C_GAL_process/normalised_mBR, there is one file noSmooth, one Smooth3 and one Smooth11.
+Ready to use with IGV: no NAs and names are simplified.
+Hoxd1_brain1_noSmooth.bedGraph ; Hoxd1_brain1_Smooth3.bedGraph ; Hoxd1_brain1_Smooth11.bedGraph
+
 
