@@ -21,11 +21,11 @@ Example:
 wp2_repXXX.bedGraph$V4[1184787]		0.08561154
 wp2. bedGraph$V4[1184787]			0.09
 
-# OrgBG
-Starts from a directory with an Input file containing bedGraphs and an empty output file.
-The script applies to all bedGraphs of input file.
-Selects intervals within ROI and removes NAs.
-Save new bedGraphs in the output file.
+# Select_ROI.R
+Select specified ROI on all files in NameOfProject/normalised
+OutputName<-InputName_HoxD.bedGraph
+Save output in NameOfProject/normalised_HoxD
+NOTE: do not remove NAs at this step, it makes problems to merge replicates, as intervals would not remain the same
 
 # Average-4C
 How to average 4C data from two biological replicates?
@@ -49,6 +49,7 @@ Download from lims: fastq for GAL1 and GAL2
 Download form HTS GAL1 and GAL2 (run by Leo), replicates not specified
 
 Files of interest selected in 4C_GAL_process/allFIles with normalised_sc*Hox*rep* command and saved in 4C_GAL_process/normalised
-Intervals covering HoxD region selected in 4C_GAL_process/normalised by orgBG201801.R output saved to 4C_GAL_process/normalised_HoxD
-
+Intervals covering HoxD region selected in 4C_GAL_process/normalised by Select_ROI.R output saved to 4C_GAL_process/normalised_HoxD
+HoxD region chrom<-"chr2"coordInf<-72239991 coordSup<-76840007
+Merge biological replicates of 4C_GAL_process/normalised_HoxD with
 
