@@ -1,3 +1,12 @@
+### GETTING THE DATA
+
+# Get the raw data (fastq file): login lims > user data > get labdata > ProjectName > show hide > http link
+# Here, I do not work on fastq files but on the files pre-processed by HTSstation
+
+# Get 
+# Starts with a directory called 4C_NameOfProject
+# This directory contains a folder called allFiles. It contains all sequencing files downloaded from lims. 
+
 # OrgBG
 Start from a directory with an Input file containing bedGraphs and an empty output file.
 The script applies to all bedGraphs of input file.
