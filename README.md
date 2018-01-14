@@ -33,14 +33,14 @@ Example:
 wp2_repXXX.bedGraph$V4[1184787]		0.08561154
 wp2. bedGraph$V4[1184787]			0.09
 
-# Select_ROI.R
+### Select_ROI.R
 Select specified ROI on all files in NameOfProject/normalised
 Save output in NameOfProject/normalised_HoxD
 normalised_scorePerFeature_viewpoint_tissue_repXXX_HoxD.bedGraph
 
 NOTE: do not remove NAs at this step, it makes problems to merge replicates, as intervals would not remain the same
 
-# Avg_BioRep.R
+### Avg_BioRep.R
 NOTE: here, the script does not apply on all files of the folder. Need to manually enter the two file names to merge, because sometimes there are not two replicates. In this case, copy paste the file of the single replicate from NameOfProject/normalised_HoxD to NameOfProject/mBR
 
 Choose two inputfiles in NameOfProject/normalised_HoxD
@@ -49,7 +49,7 @@ Do score mean for each fragment.
 Save one output file in NameOfProject/normalised_mBR
 normalised_scorePerFeature_viewpoint_tissue_repXXX_HoxD_mBR.bedGraph
 
-# Smoothing.R
+### Smoothing.R
 Choose size of Sliding window.
 Smooth all files in NameOfProject/normalised_HoxD.
 Removes NAs for visualisation in IGV - of smoothed and unsmoothed (=input) files.
