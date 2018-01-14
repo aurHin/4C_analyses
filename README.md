@@ -57,6 +57,11 @@ Save smoothed and unsmoothed files in NameOfProject/norm_smoothed_woNA. NOTE: na
 Respectively Viewpoint_Tissue_SmoothSizeSlidingWindow.bedGraph Viewpoint_Tissue_noSmooth.bedGraph
 NOTE: output files ready to use in IGV
 
+### 4C_Functions.R
+Contains function called by the scripts above
+
+## Use files in normalised_mBR for analyse and in norm_smoothed_woNA for visualisation.
+
 # January 2018 - WP, tailbud, brain 4C
 Application of these tools on 4C fot the WP project
 The sample wp1 was removed for analyses because it is not showing expected profile, while wp2 does. Need to repeat.
