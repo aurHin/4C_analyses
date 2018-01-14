@@ -13,34 +13,33 @@ list of analyses > ProjectName > download all files
 Work in directory NameOfProject.
 Save all files in NameOfProject/allFiles folder.
 Select normalised files of interest with terminal and save in NameOfProject/normalised. 
+normalised_scorePerFeature_viewpoint_tissue_repXXX.bedGraph
+
 !!! Check carefully oufiles.xlxs to have the detail of analyses done by HTS.
 
 NOTE: 
--dealing with replicates: fileNames containing "rep" deal with individual biological replicates. Without "rep", replicates are merged. Here, deal only with individual replicates. Check the oufiles.xlxs carefully to see how to deal with replicates. Here, smoothing is done because smoothing from HTS merge replicates. If not replicates specified, the "norep" file is the rounded value of "rep" file.
+dealing with replicates: fileNames containing "rep" deal with individual biological replicates. Without "rep", replicates are merged. Here, deal only with individual replicates. Check the oufiles.xlxs carefully to see how to deal with replicates. Here, smoothing is done because smoothing from HTS merge replicates. If not replicates specified, the "norep" file is the rounded value of "rep" file.
 Example:
 wp2_repXXX.bedGraph$V4[1184787]		0.08561154
 wp2. bedGraph$V4[1184787]			0.09
 
 # Select_ROI.R
 Select specified ROI on all files in NameOfProject/normalised
-OutputName<-InputName_HoxD.bedGraph
 Save output in NameOfProject/normalised_HoxD
+normalised_scorePerFeature_viewpoint_tissue_repXXX_HoxD.bedGraph
+
 NOTE: do not remove NAs at this step, it makes problems to merge replicates, as intervals would not remain the same
 
-# Average-4C
-How to average 4C data from two biological replicates?
+# Avg_BioRep.R
+NOTE: here, the script does not apply on all files of the folder. Need to manually enter the two file names to merge, because sometimes there are not two replicates. In this case, copy paste the file of the single replicate from NameOfProject/normalised_HoxD to NameOfProject/mBR
 
-I do the mean of the score for each fragments in the bedGraph.
-Replicate 1= normalised_scorePerFeature_Hoxd9_brain1_rep51414.bedGraph  
-Replicate 2= normalised_scorePerFeature_Hoxd9_brain2_rep51438.bedGraph
+Choose two inputfiles in NameOfProject/normalised_HoxD
+Check if intervals of fragments are the same in the two files.
+Do score mean for each fragment.
+Save one output file in NameOfProject/normalised_mBR
+normalised_scorePerFeature_viewpoint_tissue_repXXX_HoxD_mBR.bedGraph
 
-I think the profile in UCSC does not look like the average of the two replicates. Is it true? Should I average the fastq?
-
-AvgRep<-function(GR_rep1,GR_rep2){
-  Avg_GR<-GR_rep1[,0]
-  Avg_GR$score<-((GR_rep1$score+GR_rep2$score)/2)
-  return(Avg_GR)
-}
+# Smoothing.R
 
 # January 2018 - WP, tailbud, brain 4C
 Application of these tools on 4C fot the WP project
@@ -52,4 +51,6 @@ Files of interest selected in 4C_GAL_process/allFIles with normalised_sc*Hox*rep
 Intervals covering HoxD region selected in 4C_GAL_process/normalised by Select_ROI.R output saved to 4C_GAL_process/normalised_HoxD
 HoxD region chrom<-"chr2"coordInf<-72239991 coordSup<-76840007
 Merge biological replicates of 4C_GAL_process/normalised_HoxD with
+
+normalised_scorePerFeature_Hoxd1_brain1_rep51415_HoxD_mBR.bedGraph
 
