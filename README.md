@@ -62,6 +62,11 @@ Contains function called by the scripts above
 
 ## Use files in normalised_mBR for analyse and in norm_smoothed_woNA for visualisation.
 
+### Quantification.R
+Do the ratio ROI/TDOM for all regions specified at the beginning of the script.
+Apply on all files in NameOfProject/normalised_mBR
+Save Quantification.csv in NameOfProject/quantification
+
 # January 2018 - WP, tailbud, brain 4C
 Application of these tools on 4C fot the WP project
 The sample wp1 was removed for analyses because it is not showing expected profile, while wp2 does. Need to repeat.
