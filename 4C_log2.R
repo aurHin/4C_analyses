@@ -1,51 +1,59 @@
-source("/Users/Hintermann/Desktop/LAB/4C/4C_WPprojectNew/4C_Rscripts/4C_log2/Functions_4C_log2.R")
+wd<-getwd()
+setwd("/Users/Hintermann/Dropbox/4C_WPprojectNew/4C_Rscripts/")
 
-library(graphics)
-#source("https://bioconductor.org/biocLite.R")
-#biocLite("GenomicRanges")
-library(GenomicRanges)
+#wd<-"/Users/Hintermann/Desktop/log2test"
+source("4C_Functions_1712.R")
 
-setwd("/Users/Hintermann/Desktop/LAB/4C/4C_WPprojectNew")
+# I did this just one time because I did not put sep="\t" in the function writeBedGraph, 
+# so the files saved by this function could not be red by ImportBedGraph 
+# filenames<-list.files()
+# filenames
+# lapply(filenames,ReWrite)
 
-# File to average (score mean)
-A_File<-"OriginalBedGraphs/normalised_scorePerFeature_Hoxd9_brain1_rep51414.bedGraph"
-B_File<-"OriginalBedGraphs/normalised_scorePerFeature_Hoxd9_brain2_rep51438.bedGraph"
+setwd(paste(wd,"tab_Avg_bedGraphs",sep="/"))
 
-A_GR<-ImpSelGR(A_File)
-B_GR<-ImpSelGR(B_File)
+### Here I upload the bedGraph I want to compare by log2 ratio
 
-Avg_AB<-AvgRep(A_GR,B_GR)
-Avg_BG<-GRtoBG(Avg_AB)
+Num_bed<-ImportBedGraph(readline("Type the name of the numerator bedGraph (with extension)."))
+#Num_bed<-ImportBedGraph("tab_AVG_Hoxd1_wp2_normalised_scorePerFeature.bedGraph")
 
-BG_name<-"Hoxd9_b1b2"
+Denom_bed<-ImportBedGraph(readline("Type the name of the denominator bedGraph (with extension)."))
+#Denom_bed<-ImportBedGraph("tab_AVG_Hoxd1_b1b2_normalised_scorePerFeature.bedGraph")
 
-#BG_header<-paste("track type=bedGraph name='",BG_name,"' description='",BG_name,"' visibility=full autoScale=off windowingFunction=maximum smoothingWindow=11\n",sep="")
-BG_header<-paste("track type=bedGraph name='",BG_name,"' description='",BG_name,"' visibility=full autoScale=off windowingFunction=maximum\n",sep="")
+### This one I manually modified in order to test the if statement = F
+test_notEq<-ImportBedGraph("uneq_tab_AVG_Hoxd8_wp1_wp2_normalised_scorePerFeature.bedGraph")
 
-writeBedGraph(BG_header,Avg_BG,BG_name)
+### I need to modify the function readline in order to be able to use it to write a header that I can use with the function writeBedGraph.
+### For now it is not writing correctly the \n in the bedGraph.
+### This is a way around it because I think today I lost enough time working with header, \n and write.table...
+### It works like this for now ^^
 
-##########
-##########
-#########
+BG_header<-"browser position chr2:73780012-75730964 \ntrack type=bedGraph name='d1_wpFB_log2_testLog2' description='d1_wpFB_log2_testLog2' visibility=full windowingFunction=maximum smoothingWindow=11\n"
+message(paste("Your header for the output file is: \n\n",BG_header,"\nYou need to modify it now.",sep=""))
 
+### I put your comments in a function AreSameInterval that returns TRUE if intervals are the same and F if they are different.
+### Then I can use it each time to verify if they are the same.
 
-Num_bed<-ImportBedGraph("normalised_scorePerFeature_Hoxd1_brain1_rep51415.bedGraph")
-Denom_bed<-ImportBedGraph("normalised_scorePerFeature_Hoxd9_brain2_rep51414.bedGraph")
+### Here I test if == F (intervals are different)
 
-setwd(dirname("/Users/Hintermann/Desktop/LAB/4C/4C_WPprojectNew/OriginalBedGraphs"))
-#Check that the files contain the same intervals
-which((Denom_bed$V2==Num_bed$V2)==F)
-which((Denom_bed$V3==Num_bed$V3)==F)
+if (AreSameIntervals(Num_bed,test_notEq)){
+  setwd(paste(wd,"log2_ratios",sep="/"))
+  log2_fname<-readline("Enter the name of the output file containing the log2 profile.\n(No extension).")
+  BG_log<-log2bedGraph(Num_bed,Denom_bed)
+  writeBedGraph(BG_header,BG_log,log2_fname)
+} else{
+  cat("The files do not have the same intervals.\n")
+}
 
+### Here I test if ==T (intervals are equivalent)
 
-Denom_bed_HoxD<-SelectInterval(Denom_bed,chrom,coordInf,coordSup)
-Num_bed_HoxD<-SelectInterval(Num_bed,chrom,coordInf,coordSup)
+if (AreSameIntervals(Num_bed,Denom_bed)){
+  setwd(paste(wd,"log2_ratios",sep="/"))
+  log2_fname<-readline("Enter the name of the output file containing the log2 profile.\n(No extension).")
+  BG_log<-log2bedGraph(Num_bed,Denom_bed)
+  writeBedGraph(BG_header,BG_log,log2_fname)
+} else{
+  cat("The files do not have the same intervals.\n")
+}
 
-BG_log<-log2bedGraph(Num_bed_HoxD,Denom_bed_HoxD)
-
-BG_header<-"track type=bedGraph name='d9_wpFB_log2' description='d9_wpFB_log2' visibility=full windowingFunction=maximum\n"
-writeBedGraph(BG_header,BG_log,"d9_wpFB_log2")
-
-#Transform bed to GRanges, select non-zero values, subset by overlaps and create an new GRange with log2 value. 
-#Write the bedGraph from this GRange
-
+### It works when I tried to upload the bedGrahp in UCSC
