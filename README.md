@@ -67,6 +67,13 @@ Do the ratio ROI/TDOM for all regions specified at the beginning of the script.
 Apply on all files in NameOfProject/normalised_mBR
 Save Quantification.csv in NameOfProject/quantification
 
+### CumulReads.R
+Calculate and plots cumulative Reads over ROI
+Apply on all files in NameOfProject/normalised_HoxD_mBR
+Save CumulReads_XX.csv and CumulReads_XX.pdf
+
+By commenting/uncommenting lines, you can add highlights or vertical lines to delimit region on the plot
+
 # January 2018 - WP, tailbud, brain 4C
 Application of these tools on 4C fot the WP project
 The sample wp1 was removed for analyses because it is not showing expected profile, while wp2 does. Need to repeat.
@@ -89,5 +96,9 @@ For all files in 4C_GAL_process/normalised_mBR apply Smoothing.R with size of sl
 In 4C_GAL_process/norm_smoothed_woNA, for each file in 4C_GAL_process/normalised_mBR, there is one file noSmooth, one Smooth3 and one Smooth11.
 Ready to use with IGV: no NAs and names are simplified.
 Hoxd1_brain1_noSmooth.bedGraph ; Hoxd1_brain1_Smooth3.bedGraph ; Hoxd1_brain1_Smooth11.bedGraph
+
+# March 2018 - WP, tailbud, brain 4C
+
+I applied Cumulative reads to 4 datasets: d1, d4, wp brain for each.I choose region HR1 to CS38 and zoom on HR1.
 
 
