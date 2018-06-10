@@ -41,7 +41,7 @@ normalised_scorePerFeature_viewpoint_tissue_repXXX_HoxD.bedGraph
 NOTE: do not remove NAs at this step, it makes problems to merge replicates, as intervals would not remain the same
 
 ### Avg_BioRep.R
-NOTE: here, the script does not apply on all files of the folder. Need to manually enter the two file names to merge, because sometimes there are not two replicates. In this case, copy paste the file of the single replicate from NameOfProject/normalised_HoxD to NameOfProject/mBR
+NOTE: here, the script does not apply on all files of the folder. Need to manually enter the two file names to merge, because sometimes there are not two replicates. In this case, copy paste the file of the single replicate from NameOfProject/normalised_HoxD to NameOfProject/normalised_mBR
 
 Choose two inputfiles in NameOfProject/normalised_HoxD
 Check if intervals of fragments are the same in the two files.
