@@ -101,4 +101,7 @@ Hoxd1_brain1_noSmooth.bedGraph ; Hoxd1_brain1_Smooth3.bedGraph ; Hoxd1_brain1_Sm
 
 I applied Cumulative reads to 4 datasets: d1, d4, wp brain for each.I choose region HR1 to CS38 and zoom on HR1.
 
-
+# June 2018 - WP, tailbud, brain 4C
+Add tb to analyses done with wp and brain (highest 10)
+Take normalised_mBR files from NAS for tb, viewpoints d1,d4,d9.
+Apply log2.R to get log
