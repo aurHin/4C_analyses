@@ -5,6 +5,10 @@ login https://uhts-gva.vital-it.ch/user/getdata/dataruns
 user data > get labdata > ProjectName > show hide > http link
 Here, no work on fastq files but on the files pre-processed by HTSstation.
 
+### Get the demultiplexed file from HTS
+Connect http://htsstation.epfl.ch/
+analyses > demultiplexed
+
 ### Get the analysed files from HTS
 Connect http://htsstation.epfl.ch/
 list of analyses > ProjectName > download all files
