@@ -19,7 +19,7 @@ RegionsToQuant<-list(TDOM,CT,TT,ECs,HR1,Mtx2_prom)
 ### FUNCTIONS
 
 MeanOfRegion<-function(df,region){
-  reg<-subset(df,df[,2]>=region[1]&df[,3]<=region[2])
+  reg<-subset(df,df[,2]<=region[2]&df[,3]>=region[1])
   return(mean(reg$V4))
 }
 
