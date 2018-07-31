@@ -23,6 +23,11 @@ MeanOfRegion<-function(df,region){
   return(mean(reg$V4))
 }
 
+SumOfRegion<-function(df,region){
+  reg<-subset(df,df[,2]<=region[2]&df[,3]>=region[1])
+  return(sum(reg$V4))
+}
+
 ### SCRIPT
 setwd(directory)
 
