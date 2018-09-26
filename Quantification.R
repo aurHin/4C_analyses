@@ -37,7 +37,7 @@ Quantification_Summary<-data.frame(fn)
 colnames(Quantification_Summary)<-"FileName"
 
 for (reg in RegionsToQuant){
-  Quantification_Summary[reg[3]]<-0
+  Quantification_Summary[,reg[3]]<-0
 }
 
 View(Quantification_Summary)
