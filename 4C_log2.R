@@ -34,8 +34,8 @@ Denom_bed<-ImportBedGraph("normalised_scorePerFeature_Hoxd9_brain2_rep51414.bedG
 
 setwd(dirname("/Users/Hintermann/Desktop/LAB/4C/4C_WPprojectNew/OriginalBedGraphs"))
 #Check that the files contain the same intervals
-which((Denom_bed$V2==Num_bed$V2)==F)
-which((Denom_bed$V3==Num_bed$V3)==F)
+which((Denom_bed$V2!=Num_bed$V2))
+which((Denom_bed$V3!=Num_bed$V3))
 
 
 Denom_bed_HoxD<-SelectInterval(Denom_bed,chrom,coordInf,coordSup)
